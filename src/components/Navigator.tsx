@@ -185,14 +185,14 @@ export function Navigator() {
               const done = n < stepIdx;
               const w = where(s);
               return (
-                <li key={s.title} data-step={n} className="relative scroll-mt-28 pb-3 pl-12 last:pb-0">
+                <li key={s.title} data-step={n} className="relative scroll-mt-28 pb-3 pl-10 last:pb-0 sm:pl-12">
                   {/* 竖线 */}
                   {n < flow.steps.length - 1 && (
-                    <span className={clsx("absolute top-9 bottom-0 left-[17px] w-0.5", done ? "bg-jade-500" : "bg-line")} aria-hidden />
+                    <span className={clsx("absolute top-9 bottom-0 left-[15px] w-0.5 sm:left-[17px]", done ? "bg-jade-500" : "bg-line")} aria-hidden />
                   )}
                   <span
                     className={clsx(
-                      "absolute top-1 left-0 grid size-9 place-items-center rounded-full text-sm font-bold ring-4 ring-paper",
+                      "absolute top-1 left-0 grid size-8 place-items-center rounded-full text-sm font-bold ring-4 ring-paper sm:size-9",
                       on ? "bg-sun-500 text-jade-950" : done ? "bg-jade-600 text-white" : "border-2 border-line bg-white text-muted",
                     )}
                   >
@@ -204,7 +204,7 @@ export function Navigator() {
                     aria-expanded={on}
                     className={clsx(
                       "w-full rounded-2xl border text-left transition-colors",
-                      on ? "border-sun-400 bg-white shadow-card" : "border-transparent px-0 active:bg-paper-deep",
+                      on ? "rounded-b-none border-b-0 border-sun-400 bg-white" : "border-transparent px-0 active:bg-paper-deep",
                     )}
                   >
                     <div className={clsx(on ? "px-4 pt-3" : "py-1.5 pr-2")}>
@@ -218,7 +218,7 @@ export function Navigator() {
                     </div>
                   </button>
                   {on && (
-                    <div className="-mt-2 rounded-b-2xl border border-t-0 border-sun-400 bg-white px-4 pt-3 pb-4">
+                    <div className="rounded-b-2xl border border-t-0 border-sun-400 bg-white px-4 pt-2 pb-4 shadow-card">
                       <p className="text-[15px] text-ink-soft">{s.detail}</p>
                       {s.bring && (
                         <p className="mt-3 flex gap-2 rounded-lg bg-jade-50 px-3 py-2 text-sm text-jade-900">
@@ -236,7 +236,7 @@ export function Navigator() {
                         </p>
                       )}
                       {/* 手机端：地图就放在当前步骤里 */}
-                      <div className="mt-4 lg:hidden">{mapCard}</div>
+                      <div className="-mx-3 mt-4 sm:mx-0 lg:hidden">{mapCard}</div>
                       <div className="mt-4 hidden gap-2 lg:flex">
                         {stepIdx > 0 && (
                           <button type="button" onClick={() => goStep(stepIdx - 1)} className="rounded-full border border-line px-4 py-2 text-sm text-ink-soft hover:border-jade-200">

@@ -38,8 +38,8 @@ export function FloorMap({ active, className }: { active?: string; className?: s
   return (
     <div className={clsx("overflow-hidden rounded-2xl border border-line bg-white", className)}>
       <div className="flex items-center justify-between gap-2 border-b border-line px-3 py-2">
-        <p className="text-sm font-semibold text-jade-900">门诊综合院区 · 楼层示意</p>
-        <div role="tablist" aria-label="楼层" className="flex rounded-full bg-paper-deep p-0.5">
+        <p className="min-w-0 truncate text-sm font-semibold text-jade-900">门诊楼 · 楼层示意</p>
+        <div role="tablist" aria-label="楼层" className="flex shrink-0 rounded-full bg-paper-deep p-0.5">
           {(["1F", "2F"] as Floor[]).map((f) => (
             <button
               key={f}
@@ -48,7 +48,7 @@ export function FloorMap({ active, className }: { active?: string; className?: s
               aria-selected={floor === f}
               onClick={() => setManual({ for: active, floor: f })}
               className={clsx(
-                "relative rounded-full px-3.5 py-1 text-sm font-semibold transition-colors",
+                "relative rounded-full px-3.5 py-1 text-sm font-semibold whitespace-nowrap transition-colors",
                 floor === f ? "bg-jade-700 text-white" : "text-ink-soft",
               )}
             >

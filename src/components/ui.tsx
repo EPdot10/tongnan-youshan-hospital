@@ -113,7 +113,7 @@ export function PageBanner({
     <section className="relative isolate overflow-hidden bg-jade-900">
       <Img id={image} priority className="absolute inset-0 -z-10 size-full opacity-35" />
       <div className="absolute inset-0 -z-10 bg-gradient-to-r from-jade-950/95 via-jade-900/80 to-jade-900/30" />
-      <div className="mx-auto max-w-7xl px-4 py-14 md:px-6 md:py-20">
+      <div className="mx-auto max-w-7xl px-4 py-10 md:px-6 md:py-20">
         <p className="text-xs font-semibold tracking-[0.3em] text-sun-400 uppercase">{en}</p>
         <h1 className="mt-2 font-serif text-3xl font-bold text-white md:text-5xl">{title}</h1>
         {desc && <p className="mt-4 max-w-2xl text-jade-100">{desc}</p>}

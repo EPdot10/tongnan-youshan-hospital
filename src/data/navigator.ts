@@ -342,7 +342,7 @@ export const flows: Flow[] = [
   },
   {
     slug: "rehab",
-    name: "中医康复治疗",
+    name: "中医康复",
     sub: "针灸 · 推拿 · 疼痛治疗",
     icon: "leaf",
     steps: [
