@@ -15,8 +15,8 @@
 
 ## 换成医院实拍
 
-1. 把照片转成 WebP（或直接用 jpg），命名为对应的 id，例如 `public/images/building.webp`；
-2. 在 `src/data/image-manifest.json` 写上 `"building": "/images/building.webp"`；
-3. 提交即可（已存在的文件构建时不会被覆盖）。
+1. 把照片转成 WebP，放进 `public/images/`，文件名用新名字（例如 `consult-real1.webp`，换图时换文件名以避开浏览器缓存）；
+2. 在 `src/data/images.ts` 里把该条的 `src` 改为 `"local:/images/consult-real1.webp"`；
+3. 提交即可。
 
 医师照片：在 `src/components/ui.tsx` 的 `Avatar` 组件里改为读取 `/images/doctors/<slug>.webp`。

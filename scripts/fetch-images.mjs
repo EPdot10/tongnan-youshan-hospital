@@ -4,12 +4,13 @@
  * 转成 WebP 存到 public/images/，并写 src/data/image-manifest.json。
  * 这样网站只引用自己域名下的图片，不依赖国外图床（国内访问更快更稳）。
  *
- * - 已经下载过的图片会跳过（public/images 已提交到仓库时不重复下载）。
+ * - 文件名 = id + 来源哈希；同名文件已存在则跳过。
  * - 某张图下载失败不会让构建失败：页面会显示一个素雅的占位底色。
  * - 换成医院实拍：把照片放进 public/images/<id>.webp，manifest 里写上路径即可（见 docs/IMAGES.md）。
  */
 import { mkdir, readFile, writeFile, access } from "node:fs/promises";
 import path from "node:path";
+import { createHash } from "node:crypto";
 import sharp from "sharp";
 
 const root = path.resolve(import.meta.dirname, "..");
@@ -29,7 +30,12 @@ const manifest = JSON.parse(await readFile(manifestPath, "utf8").catch(() => "{}
 const exists = (p) => access(p).then(() => true, () => false);
 
 async function one(e) {
-  const file = `${e.id}.webp`;
+  if (e.url.startsWith("local:")) {
+    manifest[e.id] = e.url.slice(6);
+    return `= ${e.id}（本地文件）`;
+  }
+  // 文件名带来源地址的哈希：换图后文件名随之改变，浏览器 / CDN 不会继续显示旧缓存
+  const file = `${e.id}-${createHash("sha1").update(e.url).digest("hex").slice(0, 8)}.webp`;
   const target = path.join(outDir, file);
   if (await exists(target)) {
     manifest[e.id] = `/images/${file}`;
