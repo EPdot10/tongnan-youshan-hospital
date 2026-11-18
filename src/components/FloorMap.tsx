@@ -112,12 +112,6 @@ export function FloorMap({ active, className }: { active?: string; className?: s
             <circle cx="8" cy="8" r="3" fill="#fff" />
           </g>
         )}
-        {floor === "1F" && (
-          <g pointerEvents="none" fill="#66756f" fontSize="10">
-            <text x="180" y="196" textAnchor="middle">▲ 主入口</text>
-            <text x="62" y="196" textAnchor="middle">▲ 急诊入口</text>
-          </g>
-        )}
       </svg>
 
       <div className="min-h-[4.5rem] border-t border-line px-4 py-3 text-sm" aria-live="polite">
