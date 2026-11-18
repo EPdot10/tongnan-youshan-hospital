@@ -8,7 +8,7 @@ export const metadata: Metadata = { title: "联系我们", description: `${hospi
 export default function Contact() {
   return (
     <>
-      <PageBanner title="联系我们" en="Contact" image="building" crumbs={[{ label: "联系我们" }]} />
+      <PageBanner title="联系我们" en="Contact" image="hero-corridor" crumbs={[{ label: "联系我们" }]} />
       <Container className="py-14">
         <div className="grid gap-5 md:grid-cols-3">
           <a href={hospital.phoneHref} className="rounded-2xl bg-jade-800 p-6 text-white hover:bg-jade-700">

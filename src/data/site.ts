@@ -9,7 +9,7 @@ export const hospital = {
   name: "重庆潼南友善阳光中医医院",
   shortName: "友善阳光中医医院",
   formerName: "潼南善友阳光医院",
-  pinyin: "CHONGQING TONGNAN YOUSHAN YANGGUANG HOSPITAL OF TCM", // 英文名待院方确认（S3 页脚仅有拼音）
+  pinyin: "CQTONGNAN YOU SHAN YANG GUANG ZHONG YI YI YUAN", // 与院徽上的拼音一致；正式英文名待院方确认
   slogan: "精诚博爱 · 友善阳光",
   level: "二级中医（综合）医院",
   nature: "民营",

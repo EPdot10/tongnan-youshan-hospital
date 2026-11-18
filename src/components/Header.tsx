@@ -94,7 +94,7 @@ export function Header() {
                   <Link
                     href={item.href}
                     className={clsx(
-                      "flex items-center gap-0.5 px-3.5 py-5 text-[15px] font-medium transition-colors",
+                      "flex items-center gap-0.5 px-3 py-5 text-[15px] font-medium whitespace-nowrap transition-colors 2xl:px-4",
                       active(item.href) ? "text-jade-700" : "text-ink hover:text-jade-700",
                     )}
                   >
@@ -103,7 +103,7 @@ export function Header() {
                   </Link>
                   <span
                     className={clsx(
-                      "absolute inset-x-3.5 bottom-3 h-0.5 rounded-full bg-sun-500 transition-transform",
+                      "absolute inset-x-3 bottom-3 h-0.5 rounded-full bg-sun-500 transition-transform",
                       active(item.href) ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100",
                     )}
                   />

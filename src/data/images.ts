@@ -10,7 +10,6 @@ export const images = [
   // Unsplash（示意图）
   { id: "hero-corridor", src: "unsplash:1777269749032-d8d458ae594d", alt: "明亮整洁的医院走廊" },
   { id: "hero-herbs", src: "unsplash:1771128264855-1c032332cbc8", alt: "木架上的中药材罐" },
-  { id: "building", src: "unsplash:1764885449332-7eb941d53b7e", alt: "医院建筑外观（示意）" },
   { id: "bed", src: "unsplash:1538108149393-fbbd81895907", alt: "整洁的住院病房" },
   { id: "acupuncture", src: "unsplash:1598555763574-dca77e10427e", alt: "针灸治疗" },
   { id: "cupping", src: "unsplash:1598555748505-ccca0d9b9f7b", alt: "拔罐治疗" },

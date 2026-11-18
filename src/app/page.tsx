@@ -13,10 +13,10 @@ import {
 } from "lucide-react";
 import { HeroCarousel } from "@/components/HeroCarousel";
 import { DeptTabs } from "@/components/DeptTabs";
-import { Avatar, Container, Img, SectionTitle, V } from "@/components/ui";
+import { DoctorCard } from "@/components/DoctorCard";
+import { Container, Img, SectionTitle, V } from "@/components/ui";
 import { hospital, hours, insurance, partners, stats } from "@/data/site";
 import { doctors } from "@/data/doctors";
-import { departments } from "@/data/departments";
 import { features, news, newsKinds } from "@/data/content";
 
 const quick = [
@@ -32,7 +32,6 @@ const featuredNews = news.findIndex((n) => n.image === "wx-conf-hall");
 
 export default function Home() {
   const team = doctors.slice(0, 8);
-  const deptName = (slug: string) => departments.find((d) => d.slug === slug)?.name ?? "";
 
   return (
     <>
@@ -62,7 +61,7 @@ export default function Home() {
         <Container className="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
           <div className="relative">
             <div className="overflow-hidden rounded-2xl shadow-lift">
-              <Img id="building" className="aspect-[4/3] w-full" />
+              <Img id="hero-corridor" className="aspect-[4/3] w-full" />
             </div>
             <div className="absolute -right-3 -bottom-6 hidden rounded-2xl bg-jade-800 p-5 text-white shadow-lift sm:block md:-right-6">
               <p className="font-serif text-4xl font-bold text-sun-400">2011</p>
@@ -132,27 +131,10 @@ export default function Home() {
       {/* 医师团队 */}
       <section className="py-16 md:py-24">
         <Container>
-          <SectionTitle title="医师团队" en="Our Doctors" desc="来自三甲医院与区县医院一线的临床医师，多人兼任科室主任" more={{ href: "/doctors/", label: "全部医师" }} />
+          <SectionTitle title="医师团队" en="Our Doctors" desc="多名医师曾在重庆医科大学附属医院、西南医院、重庆市急救中心等医院进修，多人兼任科室主任" more={{ href: "/doctors/", label: "全部医师" }} />
           <div className="scrollbar-none -mx-4 flex snap-x gap-5 overflow-x-auto px-4 pb-4 md:mx-0 md:grid md:grid-cols-4 md:overflow-visible md:px-0">
             {team.map((d) => (
-              <Link
-                key={d.slug}
-                href={`/doctors/${d.slug}/`}
-                className="group w-60 shrink-0 snap-start overflow-hidden rounded-2xl border border-line bg-white transition-all hover:-translate-y-1 hover:shadow-lift md:w-auto"
-              >
-                <Avatar name={d.name} className="aspect-[4/3] w-full text-2xl" />
-                <div className="p-5">
-                  <div className="flex items-baseline gap-2">
-                    <h3 className="font-serif text-xl font-bold text-jade-900">{d.name}</h3>
-                    <span className="text-sm text-sun-600">{d.title}</span>
-                  </div>
-                  <p className="mt-1 text-sm text-muted">
-                    {deptName(d.dept)}
-                    {d.role ? ` · ${d.role}` : ""}
-                  </p>
-                  <p className="mt-3 line-clamp-2 text-sm text-ink-soft">擅长：{d.specialty.join("；")}</p>
-                </div>
-              </Link>
+              <DoctorCard key={d.slug} d={d} className="w-72 shrink-0 snap-start md:w-auto" />
             ))}
           </div>
         </Container>

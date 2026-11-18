@@ -9,7 +9,7 @@ export const metadata: Metadata = { title: "走进医院", description: `${hospi
 export default function About() {
   return (
     <>
-      <PageBanner title="走进医院" en="About Us" image="building" desc={hospital.slogan} crumbs={[{ label: "走进医院" }]} />
+      <PageBanner title="走进医院" en="About Us" image="hero-herbs" desc={hospital.slogan} crumbs={[{ label: "走进医院" }]} />
 
       {/* 医院概况 */}
       <section id="intro" className="py-16 md:py-20">

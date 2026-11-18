@@ -25,11 +25,11 @@ export function Logo({ light, className }: { light?: boolean; className?: string
   return (
     <Link href="/" className={clsx("flex items-center gap-3", className)} aria-label={`${hospital.name} 首页`}>
       <Mark className="size-11 shrink-0 md:size-12" />
-      <span className="leading-tight">
-        <span className={clsx("block font-serif text-lg font-bold tracking-wide md:text-[1.35rem]", light ? "text-white" : "text-jade-900")}>
+      <span className="min-w-0 leading-tight">
+        <span className={clsx("block font-serif text-lg font-bold tracking-wide whitespace-nowrap md:text-[1.35rem]", light ? "text-white" : "text-jade-900")}>
           {hospital.name}
         </span>
-        <span className={clsx("block text-[10px] tracking-[0.08em] md:text-[11px]", light ? "text-jade-200" : "text-muted")}>
+        <span className={clsx("block truncate text-[9px] tracking-[0.02em] md:text-[10px]", light ? "text-jade-200" : "text-muted")}>
           {hospital.pinyin}
         </span>
       </span>
