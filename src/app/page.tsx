@@ -2,7 +2,7 @@ import Link from "next/link";
 import {
   CalendarCheck,
   Clock,
-  Route,
+  Signpost,
   ShieldCheck,
   MapPin,
   Stethoscope,
@@ -18,11 +18,12 @@ import { Container, Img, SectionTitle, V } from "@/components/ui";
 import { hospital, hours, insurance, partners, stats } from "@/data/site";
 import { doctors } from "@/data/doctors";
 import { features, news, newsKinds } from "@/data/content";
+import { flows } from "@/data/navigator";
 
 const quick = [
   { icon: CalendarCheck, label: "预约挂号", sub: "公众号 · 电话 · 平台", href: "/guide/#booking" },
   { icon: Clock, label: "门诊时间", sub: "急诊 24 小时", href: "/guide/#hours" },
-  { icon: Route, label: "就诊流程", sub: "一图看懂", href: "/guide/#process" },
+  { icon: Signpost, label: "院内导航", sub: "下一步去哪", href: "/navigator/" },
   { icon: ShieldCheck, label: "医保服务", sub: "异地直接结算", href: "/guide/#insurance" },
   { icon: Stethoscope, label: "医师团队", sub: "按科室查找", href: "/doctors/" },
   { icon: MapPin, label: "交通指引", sub: "三个院区", href: "/guide/#traffic" },
@@ -56,9 +57,35 @@ export default function Home() {
         </div>
       </Container>
 
+      {/* 院内导航入口 */}
+      <Container className="mt-8 md:mt-12">
+        <div className="overflow-hidden rounded-2xl border border-line bg-white md:flex">
+          <div className="flex items-center gap-4 bg-jade-800 p-5 text-white md:w-80 md:shrink-0 md:p-7">
+            <span className="grid size-12 shrink-0 place-items-center rounded-2xl bg-sun-500 text-jade-950">
+              <Signpost className="size-6" />
+            </span>
+            <div>
+              <h2 className="font-serif text-xl font-bold">来医院，下一步去哪？</h2>
+              <p className="mt-0.5 text-sm text-jade-100">选择要办的事，跟着步骤走</p>
+            </div>
+          </div>
+          <div className="grid flex-1 grid-cols-4 gap-px bg-line">
+            {flows.map((f) => (
+              <Link
+                key={f.slug}
+                href={`/navigator/#${f.slug}`}
+                className={`flex items-center justify-center bg-white px-1 py-3.5 text-center text-sm font-semibold active:bg-jade-50 md:hover:bg-jade-50 ${f.urgent ? "text-cinnabar" : "text-jade-900"}`}
+              >
+                {f.name}
+              </Link>
+            ))}
+          </div>
+        </div>
+      </Container>
+
       {/* 医院简介 */}
       <section className="py-16 md:py-24">
-        <Container className="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
+        <Container className="grid grid-cols-1 items-center gap-10 lg:grid-cols-2 lg:gap-16 [&>*]:min-w-0">
           <div className="relative">
             <div className="overflow-hidden rounded-2xl shadow-lift">
               <Img id="hero-corridor" className="aspect-[4/3] w-full" />
@@ -132,7 +159,8 @@ export default function Home() {
       <section className="py-16 md:py-24">
         <Container>
           <SectionTitle title="医师团队" en="Our Doctors" desc="多名医师曾在重庆医科大学附属医院、西南医院、重庆市急救中心等医院进修，多人兼任科室主任" more={{ href: "/doctors/", label: "全部医师" }} />
-          <div className="scrollbar-none -mx-4 flex snap-x gap-5 overflow-x-auto px-4 pb-4 md:mx-0 md:grid md:grid-cols-4 md:overflow-visible md:px-0">
+          <p className="-mt-4 mb-4 flex items-center gap-1 text-xs text-muted md:hidden">← 左右滑动查看更多医师 →</p>
+          <div className="scrollbar-none -mx-4 flex snap-x snap-mandatory scroll-px-4 gap-4 overflow-x-auto overscroll-x-contain px-4 pb-4 md:mx-0 md:grid md:grid-cols-4 md:gap-5 md:overflow-visible md:px-0">
             {team.map((d) => (
               <DoctorCard key={d.slug} d={d} className="w-72 shrink-0 snap-start md:w-auto" />
             ))}
@@ -142,7 +170,7 @@ export default function Home() {
 
       {/* 新闻动态 + 就医信息 */}
       <section className="paper-texture border-t border-line py-16 md:py-24">
-        <Container className="grid gap-10 lg:grid-cols-[1.5fr_1fr]">
+        <Container className="grid grid-cols-1 gap-10 lg:grid-cols-[1.5fr_1fr] [&>*]:min-w-0">
           <div>
             <SectionTitle title="新闻动态" en="News" more={{ href: "/news/" }} />
             <a

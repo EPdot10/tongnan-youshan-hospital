@@ -96,6 +96,7 @@ export const nav: NavItem[] = [
     label: "就医指南",
     href: "/guide/",
     children: [
+      { label: "院内导航", href: "/navigator/" },
       { label: "门诊时间", href: "/guide/#hours" },
       { label: "预约挂号", href: "/guide/#booking" },
       { label: "就诊流程", href: "/guide/#process" },

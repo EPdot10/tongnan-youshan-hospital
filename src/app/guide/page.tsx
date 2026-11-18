@@ -20,8 +20,8 @@ export default function Guide() {
     <>
       <PageBanner title="就医指南" en="Patient Guide" image="hero-corridor" desc="提前了解门诊时间与就诊流程，让看病更省心。" crumbs={[{ label: "就医指南" }]} />
 
-      <nav className="sticky top-[73px] z-20 border-b border-line bg-white/95 backdrop-blur" aria-label="页面目录">
-        <Container className="scrollbar-none flex gap-1 overflow-x-auto py-2 text-sm">
+      <nav className="sticky top-[65px] z-20 md:top-[73px] border-b border-line bg-white/95 backdrop-blur" aria-label="页面目录">
+        <Container className="scrollbar-none flex gap-1 overflow-x-auto overscroll-x-contain py-2 text-sm">
           {[["hours", "门诊时间"], ["booking", "预约挂号"], ["process", "就诊流程"], ["insurance", "医保服务"], ["inpatient", "住院须知"], ["traffic", "交通指引"]].map(([id, label]) => (
             <a key={id} href={`#${id}`} className="shrink-0 rounded-full px-4 py-1.5 text-ink-soft hover:bg-jade-50 hover:text-jade-700">{label}</a>
           ))}
@@ -81,7 +81,7 @@ export default function Guide() {
 
       <section id="process" className="py-14">
         <Container>
-          <SectionTitle title="就诊流程" en="Process" />
+          <SectionTitle title="就诊流程" en="Process" more={{ href: "/navigator/", label: "院内导航：每一步去哪" }} />
           <ol className="grid gap-4 md:grid-cols-3 lg:grid-cols-6">
             {process.map((p, n) => (
               <li key={p.t} className="relative rounded-2xl border border-line bg-white p-5">

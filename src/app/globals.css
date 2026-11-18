@@ -37,6 +37,9 @@
 
 html {
   -webkit-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: transparent;
+  /* 兜底：任何元素意外超宽也不会让整页左右晃动（clip 不影响 sticky 吸顶） */
+  overflow-x: clip;
   scroll-behavior: smooth;
   scroll-padding-top: 7rem;
 }
@@ -46,12 +49,16 @@ html {
 }
 
 body {
+  overflow-x: clip;
   background: var(--color-paper);
   color: var(--color-ink);
   font-family: var(--font-sans);
   line-height: 1.75;
   letter-spacing: 0.01em;
 }
+
+/* 去掉手机上双击缩放带来的点击延迟 */
+a, button, [role="tab"] { touch-action: manipulation; }
 
 /* 关怀版（适老化）：放大字号、加强对比 */
 html.care { font-size: 118.75%; }
@@ -87,6 +94,10 @@ html.care .text-muted { color: var(--color-ink-soft); }
 
 .scrollbar-none { scrollbar-width: none; }
 .scrollbar-none::-webkit-scrollbar { display: none; }
+
+/* 院内导航：目标区域呼吸光圈 */
+@keyframes map-pulse { 0%, 100% { stroke-opacity: 0.9; stroke-width: 2; } 50% { stroke-opacity: 0.15; stroke-width: 9; } }
+.animate-map-pulse { animation: map-pulse 1.6s ease-in-out infinite; }
 
 /* 轮播淡入 */
 @keyframes slow-zoom { from { transform: scale(1.06); } to { transform: scale(1); } }

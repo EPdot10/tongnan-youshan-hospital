@@ -41,6 +41,10 @@ export function Header() {
 
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
+    if (!open) return;
+    const onKey = (e: KeyboardEvent) => e.key === "Escape" && setOpenAt(null);
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
   }, [open]);
 
   const active = (href: string) => (href === "/" ? pathname === "/" : pathname.startsWith(href));
@@ -147,7 +151,7 @@ export function Header() {
                 <X className="size-6" />
               </button>
             </div>
-            <nav className="flex-1 overflow-y-auto px-5 py-3">
+            <nav className="flex-1 overflow-y-auto overscroll-contain px-5 py-3">
               {nav.map((item) => (
                 <div key={item.href} className="border-b border-line/70 py-2.5">
                   <Link href={item.href} className={clsx("block py-1 text-base font-semibold", active(item.href) ? "text-jade-700" : "text-ink")}>

@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import clsx from "clsx";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import type { ImageId } from "@/data/images";
@@ -44,21 +44,48 @@ export function HeroCarousel() {
   const [i, setI] = useState(0);
   const [paused, setPaused] = useState(false);
 
+  const touch = useRef<{ x: number; y: number } | null>(null);
+
+  // 每次切换后重新计时，手动滑动后不会马上又被自动翻页
   useEffect(() => {
     if (paused) return;
-    const t = window.setInterval(() => setI((n) => (n + 1) % slides.length), 6500);
-    return () => window.clearInterval(t);
-  }, [paused]);
+    const t = window.setTimeout(() => setI((n) => (n + 1) % slides.length), 6500);
+    return () => window.clearTimeout(t);
+  }, [paused, i]);
 
   const go = (d: number) => setI((n) => (n + d + slides.length) % slides.length);
 
+  // 手指左右滑动切换；以竖向为主的滑动交给页面正常滚动
+  const onTouchStart = (e: React.TouchEvent) => {
+    const t = e.touches[0];
+    touch.current = { x: t.clientX, y: t.clientY };
+    setPaused(true);
+  };
+  const onTouchEnd = (e: React.TouchEvent) => {
+    const start = touch.current;
+    touch.current = null;
+    setPaused(false);
+    if (!start) return;
+    const t = e.changedTouches[0];
+    const dx = t.clientX - start.x;
+    const dy = t.clientY - start.y;
+    if (Math.abs(dx) > 45 && Math.abs(dx) > Math.abs(dy) * 1.5) go(dx < 0 ? 1 : -1);
+  };
+
   return (
     <section
-      className="relative isolate h-[520px] overflow-hidden bg-jade-950 md:h-[600px]"
+      className="relative isolate h-[500px] overflow-hidden bg-jade-950 select-none md:h-[600px]"
       aria-roledescription="carousel"
       aria-label="首页轮播"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
+      onTouchStart={onTouchStart}
+      onTouchEnd={onTouchEnd}
+      onTouchCancel={() => {
+        touch.current = null;
+        setPaused(false);
+      }}
+      style={{ touchAction: "pan-y" }}
     >
       {slides.map((s, n) => (
         <div

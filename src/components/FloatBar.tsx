@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { ArrowUp, CalendarCheck, MapPin, Phone, MessageCircle } from "lucide-react";
+import { ArrowUp, CalendarCheck, MapPin, Phone, MessageCircle, Signpost } from "lucide-react";
 import { hospital } from "@/data/site";
 
 /** 桌面端右侧悬浮栏 + 手机端底部快捷栏 */
@@ -39,9 +39,9 @@ export function FloatBar() {
             <strong className="mt-1 block text-jade-800">{hospital.wechat}</strong>
           </span>
         </span>
-        <Link href="/contact/" className={item}>
+        <Link href="/navigator/" className={item}>
           <MapPin className="size-5 text-sun-400" />
-          导航
+          院内导航
         </Link>
         {showTop && (
           <button type="button" className={item} onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>
@@ -51,18 +51,25 @@ export function FloatBar() {
         )}
       </div>
 
-      <nav aria-label="快捷服务" className="fixed inset-x-0 bottom-0 z-30 grid grid-cols-3 border-t border-line bg-white/95 backdrop-blur md:hidden">
-        <a href={hospital.phoneHref} className="flex flex-col items-center gap-0.5 py-2 text-xs text-jade-800">
+      <nav
+        aria-label="快捷服务"
+        className="fixed inset-x-0 bottom-0 z-30 grid grid-cols-4 border-t border-line bg-white/95 pb-[env(safe-area-inset-bottom)] backdrop-blur md:hidden"
+      >
+        <a href={hospital.phoneHref} className="flex flex-col items-center gap-0.5 py-2 text-[11px] text-jade-800 active:bg-jade-50">
           <Phone className="size-5" />
           一键拨号
         </a>
-        <Link href="/guide/#booking" className="flex flex-col items-center gap-0.5 bg-jade-700 py-2 text-xs text-white">
+        <Link href="/guide/#booking" className="flex flex-col items-center gap-0.5 py-2 text-[11px] text-jade-800 active:bg-jade-50">
           <CalendarCheck className="size-5" />
           预约挂号
         </Link>
-        <Link href="/contact/" className="flex flex-col items-center gap-0.5 py-2 text-xs text-jade-800">
+        <Link href="/navigator/" className="flex flex-col items-center gap-0.5 bg-jade-700 py-2 text-[11px] text-white active:bg-jade-800">
+          <Signpost className="size-5" />
+          院内导航
+        </Link>
+        <Link href="/contact/" className="flex flex-col items-center gap-0.5 py-2 text-[11px] text-jade-800 active:bg-jade-50">
           <MapPin className="size-5" />
-          到院导航
+          到院路线
         </Link>
       </nav>
     </>

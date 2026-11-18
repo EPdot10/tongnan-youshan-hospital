@@ -36,7 +36,7 @@ const columns = [
 
 export function Footer() {
   return (
-    <footer className="bg-jade-950 pb-20 text-jade-100 md:pb-0">
+    <footer className="bg-jade-950 pb-[calc(4.5rem+env(safe-area-inset-bottom))] text-jade-100 md:pb-0">
       <div className="mx-auto grid max-w-7xl gap-10 px-4 py-14 md:px-6 lg:grid-cols-[1.4fr_2fr_auto]">
         <div>
           <div className="flex items-center gap-3">
