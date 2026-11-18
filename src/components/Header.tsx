@@ -75,7 +75,7 @@ export function Header() {
 
       {/* 主导航 */}
       <header className="sticky top-0 z-40 border-b border-line bg-white/95 backdrop-blur">
-        <div className="mx-auto flex max-w-7xl items-center justify-between gap-6 px-4 py-3 md:px-6">
+        <div className="mx-auto flex max-w-7xl items-center justify-between gap-3 px-4 py-3 md:gap-6 md:px-6">
           <Logo />
           <a
             href={hospital.phoneHref}
@@ -126,7 +126,7 @@ export function Header() {
           </nav>
           <button
             type="button"
-            className="grid size-11 place-items-center rounded-lg text-jade-900 hover:bg-jade-50 xl:hidden"
+            className="grid size-11 shrink-0 place-items-center rounded-lg text-jade-900 hover:bg-jade-50 xl:hidden"
             onClick={() => setOpen(true)}
             aria-label="打开菜单"
             aria-expanded={open}

@@ -75,7 +75,14 @@ export function HeroCarousel() {
               <span className="size-1.5 rounded-full bg-sun-400" />
               {s.kicker}
             </p>
-            <h2 className="mt-5 font-serif text-4xl leading-tight font-bold tracking-wide text-white md:text-6xl">{s.title}</h2>
+            <h2 className="mt-5 font-serif text-[2.1rem] leading-tight font-bold tracking-wide text-white md:text-6xl">
+              {s.title.split(" · ").map((part, k) => (
+                <span key={part} className="block sm:inline">
+                  {k > 0 && <span className="mx-4 hidden text-sun-400 sm:inline">·</span>}
+                  {part}
+                </span>
+              ))}
+            </h2>
             <p className="mt-5 max-w-xl text-base text-jade-100 md:text-lg">{s.sub}</p>
             <div className="mt-8 flex flex-wrap gap-3">
               {s.cta.map((c, k) => (
