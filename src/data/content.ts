@@ -118,7 +118,7 @@ export const news: NewsItem[] = [
     title: "第 25 个世界慢阻肺日 —— 慢阻肺病：早诊断早管理",
     summary: "认识慢阻肺的高危人群与典型症状，从接种疫苗、规范用药、戒烟、肺康复训练等方面做好预防与管理。",
     url: "https://mp.weixin.qq.com/s/RzhzAjrri-DyGFfSpWh5cQ",
-    image: "stethoscope",
+    image: "elderly",
   },
   {
     date: "2026-11-14",

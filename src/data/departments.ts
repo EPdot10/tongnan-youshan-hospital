@@ -33,7 +33,7 @@ export const departments: Department[] = [
     name: "内科",
     group: "clinical",
     tag: "重点科室",
-    image: "consult",
+    image: "elderly",
     summary: "呼吸、消化、心血管、内分泌常见病与老年慢病的规范诊治和长期管理。",
     intro: [
       "内科是医院重点打造的综合性临床科室，承担内科门诊、急诊及住院诊疗，负责常见病、多发病、慢性病的规范化诊治与长期随访管理。",
@@ -133,7 +133,7 @@ export const departments: Department[] = [
     name: "康复针灸科",
     group: "tcm",
     tag: "院内特色",
-    image: "acupuncture",
+    image: "rehab-team",
     summary: "中医为主、中西医结合，诊治颈肩腰腿痛、骨关节病与中风、面瘫后遗症。",
     intro: [
       "康复针灸科秉持「中医为主、中西医结合」的诊疗理念，承担颈肩腰腿痛、骨关节病、神经系统疾病的康复评定与治疗；运用针灸、推拿、小针刀、神经阻滞等手段开展疼痛康复，负责中风后遗症、面瘫、骨折术后的功能康复训练。",

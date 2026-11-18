@@ -40,7 +40,7 @@ export function Footer() {
       <div className="mx-auto grid max-w-7xl gap-10 px-4 py-14 md:px-6 lg:grid-cols-[1.4fr_2fr_auto]">
         <div>
           <div className="flex items-center gap-3">
-            <Mark className="size-12" />
+            <Mark tone="light" className="size-12" />
             <div>
               <p className="font-serif text-lg font-bold text-white">{hospital.name}</p>
               <p className="text-xs text-jade-200">{hospital.slogan}</p>
