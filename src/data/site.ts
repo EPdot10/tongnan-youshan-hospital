@@ -36,7 +36,7 @@ export const stats: { value: Text; unit: string; label: string }[] = [
 
 export const hours = {
   summer: { label: "夏令时间（5 月 1 日起）", am: "08:00—12:00", pm: "14:00—18:00" },
-  winter: { label: "冬令时间", am: "08:00—12:00", pm: tbc("13:30—17:30") },
+  winter: { label: "冬令时间", am: "08:00—12:00", pm: "13:30—17:30" },
   emergency: "急诊 24 小时应诊",
   holiday: "无节假日接诊，各科室节假日正常开诊",
 };

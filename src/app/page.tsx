@@ -28,6 +28,8 @@ const quick = [
   { icon: MapPin, label: "交通指引", sub: "三个院区", href: "/guide/#traffic" },
 ];
 
+const featuredNews = news.findIndex((n) => n.image === "wx-conf-hall");
+
 export default function Home() {
   const team = doctors.slice(0, 8);
   const deptName = (slug: string) => departments.find((d) => d.slug === slug)?.name ?? "";
@@ -161,20 +163,31 @@ export default function Home() {
         <Container className="grid gap-10 lg:grid-cols-[1.5fr_1fr]">
           <div>
             <SectionTitle title="新闻动态" en="News" more={{ href: "/news/" }} />
+            <a
+              href={news[featuredNews].url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group relative isolate mb-4 flex min-h-56 flex-col justify-end overflow-hidden rounded-2xl p-6"
+            >
+              <Img id={news[featuredNews].image!} className="absolute inset-0 -z-10 size-full transition-transform duration-700 group-hover:scale-105" />
+              <div className="absolute inset-0 -z-10 bg-gradient-to-t from-jade-950/95 via-jade-950/50 to-transparent" />
+              <span className="w-fit rounded bg-sun-500 px-2 py-0.5 text-xs font-semibold text-jade-950">{newsKinds[news[featuredNews].kind]}</span>
+              <h3 className="mt-2 font-serif text-xl font-bold text-white md:text-2xl">{news[featuredNews].title}</h3>
+              <p className="mt-1 line-clamp-1 text-sm text-jade-100">{news[featuredNews].summary}</p>
+            </a>
             <ul className="divide-y divide-line overflow-hidden rounded-2xl border border-line bg-white">
-              {news.filter((n) => n.kind !== "science").slice(0, 5).map((n) => (
+              {news.filter((_, i) => i !== featuredNews).slice(0, 4).map((n) => (
                 <li key={n.title}>
-                  <Link href="/news/" className="group flex items-start gap-4 px-5 py-4 hover:bg-jade-50">
-                    <span className="w-20 shrink-0 pt-0.5 text-center">
-                      <span className="block font-serif text-lg leading-none font-bold text-jade-700">{n.date.slice(5) || n.date}</span>
-                      <span className="text-xs text-muted">{n.date.length >= 7 ? n.date.slice(0, 4) : ""}</span>
+                  <a href={n.url ?? "/news/"} target={n.url ? "_blank" : undefined} rel="noopener noreferrer" className="group flex items-center gap-4 px-5 py-3.5 hover:bg-jade-50">
+                    <span className="w-14 shrink-0 text-center">
+                      <span className="block font-serif text-lg leading-none font-bold text-jade-700">{n.date.slice(5)}</span>
+                      <span className="text-[11px] text-muted">{n.date.slice(0, 4)}</span>
                     </span>
-                    <span className="min-w-0 flex-1">
+                    <span className="min-w-0 flex-1 truncate">
                       <span className="mr-2 rounded bg-sun-100 px-1.5 py-0.5 text-[11px] text-sun-600">{newsKinds[n.kind]}</span>
                       <span className="font-medium text-ink group-hover:text-jade-700">{n.title}</span>
-                      <span className="mt-1 line-clamp-1 block text-sm text-muted">{n.summary}</span>
                     </span>
-                  </Link>
+                  </a>
                 </li>
               ))}
             </ul>

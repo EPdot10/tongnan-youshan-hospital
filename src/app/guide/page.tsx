@@ -18,7 +18,7 @@ const process = [
 export default function Guide() {
   return (
     <>
-      <PageBanner title="就医指南" en="Patient Guide" image="hallway" desc="提前了解门诊时间与就诊流程，让看病更省心。" crumbs={[{ label: "就医指南" }]} />
+      <PageBanner title="就医指南" en="Patient Guide" image="hero-corridor" desc="提前了解门诊时间与就诊流程，让看病更省心。" crumbs={[{ label: "就医指南" }]} />
 
       <nav className="sticky top-[73px] z-20 border-b border-line bg-white/95 backdrop-blur" aria-label="页面目录">
         <Container className="scrollbar-none flex gap-1 overflow-x-auto py-2 text-sm">

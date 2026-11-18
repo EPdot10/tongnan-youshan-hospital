@@ -1,17 +1,17 @@
 @import "tailwindcss";
 
 /* ── 设计令牌 ─────────────────────────────────────────────
-   黛绿（中医、草木）为主色，暖阳金（“友善阳光”）为点缀，宣纸米白为底。 */
+   青绿（取自医院宣传物料的主色）为主色，暖阳金（“友善阳光”）为点缀，院徽红用于标识，宣纸米白为底。 */
 @theme {
-  --color-jade-950: #072a21;
-  --color-jade-900: #0a3a2e;
-  --color-jade-800: #0d4d3c;
-  --color-jade-700: #11684f;
-  --color-jade-600: #1a7f61;
-  --color-jade-500: #2f9a78;
-  --color-jade-200: #bfe0d1;
-  --color-jade-100: #e2f1ea;
-  --color-jade-50: #f0f8f4;
+  --color-jade-950: #062b28;
+  --color-jade-900: #0a3b37;
+  --color-jade-800: #0d4f49;
+  --color-jade-700: #12695f;
+  --color-jade-600: #1a8075;
+  --color-jade-500: #2e9a8e;
+  --color-jade-200: #bfe2dc;
+  --color-jade-100: #e1f2ef;
+  --color-jade-50: #f0f8f6;
 
   --color-sun-600: #c97d14;
   --color-sun-500: #e39a2d;
@@ -19,7 +19,7 @@
   --color-sun-100: #fcefd8;
   --color-sun-50: #fdf7ec;
 
-  --color-cinnabar: #b5442e;
+  --color-cinnabar: #c62d24;
 
   --color-ink: #1d2925;
   --color-ink-soft: #3b4945;
@@ -31,8 +31,8 @@
   --font-sans: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans SC", "Source Han Sans SC", system-ui, sans-serif;
   --font-serif: "Songti SC", "STSong", "Noto Serif SC", "Source Han Serif SC", "SimSun", serif;
 
-  --shadow-card: 0 1px 2px rgb(10 58 46 / 0.04), 0 8px 24px -12px rgb(10 58 46 / 0.18);
-  --shadow-lift: 0 2px 4px rgb(10 58 46 / 0.06), 0 18px 40px -16px rgb(10 58 46 / 0.28);
+  --shadow-card: 0 1px 2px rgb(10 59 55 / 0.04), 0 8px 24px -12px rgb(10 59 55 / 0.18);
+  --shadow-lift: 0 2px 4px rgb(10 59 55 / 0.06), 0 18px 40px -16px rgb(10 59 55 / 0.28);
 }
 
 html {
@@ -65,7 +65,7 @@ html.care .text-muted { color: var(--color-ink-soft); }
   background-color: var(--color-paper);
   background-image:
     radial-gradient(circle at 20% 10%, rgb(227 154 45 / 0.06), transparent 40%),
-    radial-gradient(circle at 85% 80%, rgb(17 104 79 / 0.06), transparent 45%);
+    radial-gradient(circle at 85% 80%, rgb(18 105 95 / 0.06), transparent 45%);
 }
 
 /* 回纹装饰线，用于栏目标题 */

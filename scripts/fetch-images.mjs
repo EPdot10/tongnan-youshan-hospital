@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * 构建前下载 src/data/images.ts 里登记的图片（Unsplash 免费商用图库），
+ * 构建前下载 src/data/images.ts 里登记的图片（Unsplash 免费商用图 + 医院公众号实拍），
  * 转成 WebP 存到 public/images/，并写 src/data/image-manifest.json。
  * 这样网站只引用自己域名下的图片，不依赖国外图床（国内访问更快更稳）。
  *
@@ -14,7 +14,12 @@ import sharp from "sharp";
 
 const root = path.resolve(import.meta.dirname, "..");
 const registry = await readFile(path.join(root, "src/data/images.ts"), "utf8");
-const entries = [...registry.matchAll(/id:\s*"([^"]+)",\s*unsplash:\s*"([^"]+)"/g)].map((m) => ({ id: m[1], unsplash: m[2] }));
+const entries = [...registry.matchAll(/id:\s*"([^"]+)",\s*src:\s*"([^"]+)"/g)].map((m) => ({
+  id: m[1],
+  url: m[2].startsWith("unsplash:")
+    ? `https://images.unsplash.com/photo-${m[2].slice(9)}?auto=format&fm=jpg&fit=max&q=82&w=1920`
+    : m[2],
+}));
 
 const outDir = path.join(root, "public/images");
 await mkdir(outDir, { recursive: true });
@@ -33,11 +38,12 @@ async function one(e) {
   const ctrl = new AbortController();
   const timer = setTimeout(() => ctrl.abort(), 30000);
   try {
-    // Unsplash 官方“免费下载”地址，会跳转到原图
-    const res = await fetch(`https://unsplash.com/photos/${e.unsplash}/download?force=true`, {
+    // 不带 Referer：微信图片只拦截外站引用，服务器直接下载可以取到
+    const res = await fetch(e.url, {
       redirect: "follow",
       signal: ctrl.signal,
-      headers: { "User-Agent": "tongnan-youshan-hospital build" },
+      referrerPolicy: "no-referrer",
+      headers: { "User-Agent": "Mozilla/5.0 (compatible; tongnan-youshan-hospital build)" },
     });
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     const buf = Buffer.from(await res.arrayBuffer());

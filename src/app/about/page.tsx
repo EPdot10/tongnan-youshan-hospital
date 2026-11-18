@@ -24,7 +24,7 @@ export default function About() {
           </div>
           <div className="space-y-5">
             <div className="overflow-hidden rounded-2xl shadow-card">
-              <Img id="hallway" className="aspect-[4/3] w-full" />
+              <Img id="wx-conf-audience" className="aspect-[4/3] w-full" />
             </div>
             <dl className="grid grid-cols-3 gap-px overflow-hidden rounded-xl border border-line bg-line">
               {stats.map((s) => (

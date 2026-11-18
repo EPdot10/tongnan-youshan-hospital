@@ -19,7 +19,7 @@ const slides: { image: ImageId; kicker: string; title: string; sub: string; cta:
     ],
   },
   {
-    image: "hero-ward",
+    image: "hero-corridor",
     kicker: "急诊 24 小时 · 节假日不停诊",
     title: "随时有医生在",
     sub: "急诊 24 小时应诊，节假日各科室正常开诊，检查、治疗、手术照常开展",

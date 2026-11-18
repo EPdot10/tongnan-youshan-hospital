@@ -2,12 +2,12 @@ import Link from "next/link";
 import clsx from "clsx";
 import { hospital } from "@/data/site";
 
-/** 示意标识：朝阳 + 叶片。院方提供正式院徽后替换本组件中的 <Mark />。 */
+/** 示意标识（院徽红 + 朝阳 + 叶片）。院方提供正式院徽矢量文件后替换本组件中的 <Mark />。 */
 export function Mark({ className }: { className?: string }) {
   return (
     <svg viewBox="0 0 48 48" className={className} aria-hidden>
-      <circle cx="24" cy="24" r="23" fill="#11684F" />
-      <g stroke="#F0B452" strokeWidth="2.2" strokeLinecap="round">
+      <circle cx="24" cy="24" r="23" fill="#C62D24" />
+      <g stroke="#FCEFD8" strokeWidth="2.2" strokeLinecap="round">
         <line x1="24" y1="6" x2="24" y2="10" />
         <line x1="11.3" y1="11.3" x2="14.1" y2="14.1" />
         <line x1="36.7" y1="11.3" x2="33.9" y2="14.1" />
@@ -16,7 +16,7 @@ export function Mark({ className }: { className?: string }) {
       </g>
       <circle cx="24" cy="24" r="8.5" fill="#F0B452" />
       <path d="M10 34c6-6 12-7.5 14-7.5S32 28 38 34c-4.5 4.5-9 6.5-14 6.5S14.5 38.5 10 34Z" fill="#FAF7F0" />
-      <path d="M24 26.5c-1 4-1 9 0 14" stroke="#11684F" strokeWidth="1.6" fill="none" strokeLinecap="round" />
+      <path d="M24 26.5c-1 4-1 9 0 14" stroke="#12695F" strokeWidth="1.6" fill="none" strokeLinecap="round" />
     </svg>
   );
 }

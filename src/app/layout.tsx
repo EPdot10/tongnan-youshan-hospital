@@ -15,7 +15,7 @@ export const metadata: Metadata = {
   formatDetection: { telephone: true },
 };
 
-export const viewport: Viewport = { themeColor: "#0a3a2e", width: "device-width", initialScale: 1 };
+export const viewport: Viewport = { themeColor: "#0a3b37", width: "device-width", initialScale: 1 };
 
 const boot =
   // 旧版 Safari 补丁 + 关怀版在首屏前生效

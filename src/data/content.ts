@@ -15,6 +15,7 @@ export const history: { date: string; title: string; text?: string }[] = [
   { date: "2025.05", title: "内科住院部迁址", text: "内科住院部整体搬迁至凉风垭金竹广场二楼。" },
   { date: "2025.05", title: "商保定点合作", text: "成为中国人寿保险医疗定点单位。" },
   { date: "2026", title: "引进 PRP 再生治疗技术", text: "康复针灸科开展富血小板血浆（PRP）治疗。" },
+  { date: "2026.10", title: "承办潼南区首届疼痛技术学术交流会", text: "联合重庆市妇幼卫生学会非公医疗机构促进发展专业委员会举办。" },
 ];
 
 export const honors = ["诚信医院", "工人先锋号", "优秀医疗团队", "爱心企业"];
@@ -49,15 +50,15 @@ export const features: Feature[] = [
   {
     slug: "tcm-rehab",
     title: "中西医结合康复",
-    sub: "颈肩腰腿痛 · 骨关节病 · 中风面瘫",
+    sub: "颈肩腰腿痛 · 骨关节病 · 神经痛",
     image: "acupuncture",
     dept: "kangfu",
     body: [
-      "以中医为主、中西医结合，把针灸、推拿、拔罐、刮痧、中药熏药等传统外治方法，与小针刀、神经阻滞、关节腔灌注等现代微创技术结合起来，为疼痛与功能障碍患者制定个体化康复方案。",
+      "以中医为主、中西医结合，把针灸、推拿、拔罐、刮痧、中药熏药等传统外治方法，与超声可视化精准介入、C 臂引导下射频消融、医用臭氧治疗、神经阻滞等微创技术结合起来，为疼痛与功能障碍患者制定个体化康复方案。",
     ],
     points: [
       { title: "传统外治", items: ["针灸", "推拿", "拔罐", "刮痧", "中药熏药", "穴位贴敷 / 埋线", "隔物灸"] },
-      { title: "微创与介入", items: ["小针刀", "穴位注射", "神经阻滞", "关节腔灌注"] },
+      { title: "微创与介入", items: ["超声可视化精准介入", "C 臂引导下射频消融", "医用臭氧治疗", "神经阻滞", "关节腔灌注", "小针刀"] },
     ],
   },
   {
@@ -90,7 +91,7 @@ export const features: Feature[] = [
     slug: "emergency",
     title: "24 小时急诊 · 节假日不停诊",
     sub: "随时都能找到医生",
-    image: "hero-ward",
+    image: "bed",
     body: [
       "急诊 24 小时应诊。医院实行无节假日接诊，节假日期间各科室正常开诊，检查、治疗与手术正常开展。",
     ],
@@ -103,22 +104,90 @@ export interface NewsItem {
   kind: NewsKind;
   title: string;
   summary: string;
-  source?: string;
+  url?: string;
+  image?: ImageId;
 }
 
 export const newsKinds: Record<NewsKind, string> = { news: "医院新闻", notice: "通知公告", science: "健康科普" };
 
-/** 新闻与公告取自医院微信公众号（S3—S8），全文待迁移；科普为示例稿，待院方审定。 */
+/** 取自医院微信公众号（标题与发布日期为原文，摘要为概述），点击跳转原文。 */
 export const news: NewsItem[] = [
-  { date: "2026-08-10", kind: "news", title: "医院全面启动“百日攻坚”专项行动", summary: "医院全面启动“百日攻坚”专项行动，详情见医院微信公众号。", source: "医院公众号" },
-  { date: "2026", kind: "news", title: "康复针灸科引进 PRP 富血小板血浆再生治疗技术", summary: "利用自体血小板中的生长因子促进组织修复，为骨关节与运动损伤患者提供新的治疗选择。", source: "医院公众号" },
-  { date: "2025-05-30", kind: "news", title: "医院正式成为中国人寿保险医疗定点单位", summary: "参保患者可在医院享受相应的商业保险理赔服务。", source: "医院公众号" },
-  { date: "2025-05-07", kind: "notice", title: "内科住院部整体搬迁至凉风垭金竹广场二楼", summary: "新址位于潼南第一中学旁，住院患者及家属请按新地址前往。", source: "医院公众号" },
-  { date: "2025-05", kind: "notice", title: "2025 年五一作息时间调整通知", summary: "自 5 月 1 日起门诊执行夏令作息：08:00—12:00，14:00—18:00；急诊 24 小时应诊。", source: "医院公众号" },
-  { date: "长期", kind: "notice", title: "节假日照常接诊", summary: "医院实行无节假日接诊，节假日期间各科室正常开诊。", source: "医院公众号" },
-  { date: "示例", kind: "science", title: "冬季养生：顺应时令，重在“养藏”", summary: "冬季宜早卧晚起、注意保暖，饮食适当温补，少食生冷，适度运动以微微出汗为宜。" },
-  { date: "示例", kind: "science", title: "颈肩腰痛反复发作，什么时候该就医？", summary: "疼痛持续不缓解、伴手脚麻木无力或夜间痛醒时，应及时到医院明确病因，不宜长期自行贴膏药了事。" },
-  { date: "示例", kind: "science", title: "孕期产检怎么安排？一张时间表看明白", summary: "孕早期建档，孕中期做好筛查与系统超声，孕晚期增加产检频次，具体安排请遵医嘱。" },
+  {
+    date: "2026-11-18",
+    kind: "science",
+    title: "第 25 个世界慢阻肺日 —— 慢阻肺病：早诊断早管理",
+    summary: "认识慢阻肺的高危人群与典型症状，从接种疫苗、规范用药、戒烟、肺康复训练等方面做好预防与管理。",
+    url: "https://mp.weixin.qq.com/s/RzhzAjrri-DyGFfSpWh5cQ",
+    image: "stethoscope",
+  },
+  {
+    date: "2026-11-14",
+    kind: "science",
+    title: "“早发现，早行动” —— 2026 年世界糖尿病日",
+    summary: "糖尿病早期常无明显症状，高危人群应主动筛查血糖；确诊后在医生指导下规范治疗、长期管理。",
+    url: "https://mp.weixin.qq.com/s/JZS9bBTHRg8rWEujos0cfw",
+    image: "lab-tubes",
+  },
+  {
+    date: "2026-11-09",
+    kind: "news",
+    title: "为爱挽袖，热血传情 —— 医院干部职工踊跃参与无偿献血",
+    summary: "11 月 6 日，医院支部委员会组织干部职工参加 2026 年无偿献血活动，党员带头，临床与行政后勤人员踊跃参与。",
+    url: "https://mp.weixin.qq.com/s/YskI8HJ8qNwo8sMNnfWbGA",
+    image: "wx-blood",
+  },
+  {
+    date: "2026-11-04",
+    kind: "science",
+    title: "腰椎间盘突出症 —— 该手术还是保守？",
+    summary: "用 8 个问题讲清腰椎间盘突出症的成因、判断方法和治疗选择；出现鞍区麻木、大小便障碍应尽快急诊就医。",
+    url: "https://mp.weixin.qq.com/s/TB9xzJS4rwlJxT3rSLwyRQ",
+    image: "leg-exam",
+  },
+  {
+    date: "2026-11-02",
+    kind: "science",
+    title: "小小臭氧，凭什么能搞定顽固疼痛？",
+    summary: "介绍医用臭氧治疗的原理、适用的慢性疼痛类型，以及禁用和慎用人群，治疗须经医生评估。",
+    url: "https://mp.weixin.qq.com/s/8giB3exzH8VK_gTRzJLGWA",
+    image: "therapy-device",
+  },
+  {
+    date: "2026-11-01",
+    kind: "science",
+    title: "神奇的“一根针” —— 射频治疗技术",
+    summary: "中医康复科开展超声可视化精准介入与 C 臂引导下射频消融术，为顽固性疼痛患者提供微创治疗选择。",
+    url: "https://mp.weixin.qq.com/s/cNUzV7IwshjXg76gEO6Vww",
+    image: "acupuncture",
+  },
+  {
+    date: "2026-10-29",
+    kind: "news",
+    title: "潼南区首届疼痛技术学术交流会顺利召开",
+    summary: "10 月 27 日，由重庆市妇幼卫生学会主办、我院承办的疼痛技术学术交流会召开，围绕疼痛适宜技术在基层的应用开展研讨。",
+    url: "https://mp.weixin.qq.com/s/9Soog1NS9BmZ99B0IXlVeg",
+    image: "wx-conf-hall",
+  },
+  {
+    date: "2026-10-26",
+    kind: "notice",
+    title: "医院承办第一届疼痛技术学术交流会（会议通知）",
+    summary: "交流会于 10 月 27 日在潼南区举行，邀请三位疼痛领域专家授课。",
+    url: "https://mp.weixin.qq.com/s/cd87DwBYF_ADIiAA9eVrYw",
+    image: "wx-conf-sign",
+  },
+  {
+    date: "2025-05-30",
+    kind: "news",
+    title: "医院正式成为中国人寿保险医疗定点单位",
+    summary: "参保患者可在医院享受相应的商业保险理赔服务。",
+  },
+  {
+    date: "2025-05-07",
+    kind: "notice",
+    title: "内科住院部整体搬迁至凉风垭金竹广场二楼",
+    summary: "新址位于潼南第一中学旁，住院患者及家属请按新地址前往。",
+  },
 ];
 
 export const jobs = [
