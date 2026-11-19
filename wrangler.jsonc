@@ -4,6 +4,9 @@
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "tongnan-youshan-hospital",
   "compatibility_date": "2026-11-15",
+  // 自定义域名：国内可直接访问（workers.dev 在国内被阻断）。部署时自动创建 DNS 记录与证书。
+  "routes": [{ "pattern": "tongnan.epdotstudio.com", "custom_domain": true }],
+  "workers_dev": true,
   "assets": {
     "directory": "./out",
     "not_found_handling": "404-page",

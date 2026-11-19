@@ -48,7 +48,7 @@ npm run build      # 下载图片 → 构建 → out/
 ## 部署
 
 Cloudflare Workers Builds 已连接本仓库，**push 到 `main` 自动部署**：
-<https://tongnan-youshan-hospital.wangxcep.workers.dev>（`*.workers.dev` 在中国大陆通常打不开，给院方看需绑定自定义域名，见 `docs/DEPLOYMENT.md`）。
+**<https://tongnan.epdotstudio.com>**（国内可直接访问）；备用 <https://tongnan-youshan-hospital.wangxcep.workers.dev>（国内打不开）。
 
 演示阶段全站 `noindex`。正式上线把 `src/data/launch.json` 改为 `{ "launched": true }`。
 

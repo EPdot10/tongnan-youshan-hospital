@@ -3,7 +3,9 @@
 ## 当前：Cloudflare Workers Builds（免费）
 
 - 项目名：`tongnan-youshan-hospital`（必须与 `wrangler.jsonc` 的 `name` 一致）
-- 地址：<https://tongnan-youshan-hospital.wangxcep.workers.dev>
+- 地址：**<https://tongnan.epdotstudio.com>**（自定义域名，写在 `wrangler.jsonc` 的 `routes` 里，部署时自动创建 DNS 与证书）
+- 备用：<https://tongnan-youshan-hospital.wangxcep.workers.dev>（国内打不开）
+- `epdotstudio.com` 是工作室的展示域名，其他客户项目各用一个子域名（如 `xxx.epdotstudio.com`）
 - 构建命令：`npm run build`；部署命令：`npx wrangler deploy`；变量 `NODE_VERSION=22`
 - push 到 `main` 自动部署；其它分支生成预览地址 `*-tongnan-youshan-hospital.wangxcep.workers.dev`
 
